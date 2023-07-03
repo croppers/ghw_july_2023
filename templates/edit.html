@@ -1,0 +1,17 @@
+<!-- edit.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hack Planner App</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Item</h1>
+        <form class="edit-form" action="/edit/{{ item_id }}" method="post">
+            <input type="text" name="item" value="{{ item }}">
+            <button type="submit">Save</button>
+        </form>
+    </div>
+</body>
+</html>

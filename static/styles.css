@@ -1,0 +1,68 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.checklist-items {
+    list-style-type: none;
+    padding: 0;
+}
+
+.checklist-items li {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.checklist-items li a {
+    color: #333;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+.add-form input[type="text"],
+.edit-form input[type="text"] {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.add-form button,
+.edit-form button {
+    padding: 10px;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-form button:hover,
+.edit-form button:hover {
+    background-color: #45a049;
+}
+
+.add-form input[type="text"]:focus,
+.edit-form input[type="text"]:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
