@@ -48,8 +48,8 @@ def delete_item(item_id):
 
 def send_email(subject, body):
     message = Mail(
-        from_email='cropper@live.com',
-        to_emails='chlorosilver@gmail.com',
+        from_email=reminder_email,
+        to_emails='sendgrid.tutorial@protonmail.com',
         subject=subject,
         plain_text_content=body)
 
