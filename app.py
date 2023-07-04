@@ -1,8 +1,13 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, jsonify
 import sqlite3
+import os
+import sendgrid
+from sendgrid.helpers.mail import Mail
 
 app = Flask(__name__)
 db_path = 'checklist.db'
+sendgrid_api_key = os.getenv('SENDGRID_API_KEY')
+reminder_email = os.getenv('REMINDER_EMAIL')
 
 def create_table():
     conn = sqlite3.connect(db_path)
@@ -41,6 +46,23 @@ def delete_item(item_id):
     conn.commit()
     conn.close()
 
+def send_email(subject, body):
+    message = Mail(
+        from_email='cropper@live.com',
+        to_emails='chlorosilver@gmail.com',
+        subject=subject,
+        plain_text_content=body)
+
+    try:
+        sg = sendgrid.SendGridAPIClient(api_key=sendgrid_api_key)
+        response = sg.send(message)
+        if response.status_code == 202:
+            return True
+    except Exception as e:
+        print("An error occurred while sending email:", str(e))
+    
+    return False
+
 @app.route('/')
 def checklist():
     create_table()
@@ -68,6 +90,19 @@ def edit(item_id):
 def delete(item_id):
     delete_item(item_id)
     return redirect('/')
+
+
+@app.route('/send_email', methods=['POST'])
+def send_email_route():
+    data = request.get_json()
+    item = data['item']
+    subject = "Reminder: {}".format(item)
+    body = "This is a reminder for the task: {}".format(item)
+
+    if send_email(subject, body):
+        return jsonify(success=True)
+    else:
+        return jsonify(success=False), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
