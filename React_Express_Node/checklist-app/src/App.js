@@ -81,7 +81,6 @@ function App() {
         <input type="text" value={newItem} onChange={(e) => setNewItem(e.target.value)} />
         <button onClick={addItem}>Add</button>
       </div>
-      
     </div>
   );
 }

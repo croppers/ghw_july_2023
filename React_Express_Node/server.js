@@ -70,7 +70,7 @@ app.post('/send_email', (req, res) => {
 
   sgMail.setApiKey(sendgridApiKey);
   const msg = {
-    to: 'chlorosilver@gmail.com',
+    to: 'sendgrid.tutorial@protonmail.com',
     from: reminderEmail,
     subject: subject,
     text: body,
