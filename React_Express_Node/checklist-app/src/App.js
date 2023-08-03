@@ -63,13 +63,13 @@ function App() {
   };
 
   return (
-    <div class="container">
+    <div className="container">
       <h1>Hack Planner</h1>
-      <ul class="checklist-items">
+      <ul className="checklist-items">
         {items.map((item) => (
           <li key={item.id}>
             <span>{item.item}</span>
-            <button class="remind-button" onClick={() => editItem(item.id, prompt('Enter updated item', item.item))}>
+            <button onClick={() => editItem(item.id, prompt('Enter updated item', item.item))}>
               Edit
             </button>
             <button onClick={() => deleteItem(item.id)}>Delete</button>
@@ -77,7 +77,7 @@ function App() {
           </li>
         ))}
       </ul>
-      <div class="add-form">
+      <div className="add-form">
         <input type="text" value={newItem} onChange={(e) => setNewItem(e.target.value)} />
         <button onClick={addItem}>Add</button>
       </div>
